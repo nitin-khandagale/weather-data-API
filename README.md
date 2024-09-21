@@ -57,8 +57,11 @@ pip install -r requirements.txt
 Make sure you have PostgreSQL installed. Create a new database:
 
 ```bash
+# Create a Postgres Database using Docker
+docker run --name weather_db -e POSTGRES_PASSWORD=your_postgres_password -p 5432:5432 -d postgres
+
 # Access PostgreSQL prompt
-psql -U postgres
+docker exec -it weather_db psql -U postgres
 
 # Create a new database
 CREATE DATABASE weather_db;
@@ -69,7 +72,7 @@ Create a `.env` file in the root directory with your PostgreSQL credentials:
 ```bash
 DB_HOST=localhost
 DB_NAME=weather_db
-DB_USER=your_postgres_username
+DB_USER=postgres
 DB_PASSWORD=your_postgres_password
 ```
 
