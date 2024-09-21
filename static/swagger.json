@@ -1,0 +1,152 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Weather API",
+        "description": "API for weather and statistics data"
+    },
+    "host": "localhost:5000",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/weather": {
+            "get": {
+                "summary": "Get weather data",
+                "description": "Fetch weather data with optional filters (station ID, date range).",
+                "parameters": [
+                    {
+                        "name": "station_id",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Weather station ID to filter by"
+                    },
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "type": "string",
+                        "format": "date",
+                        "description": "Start date to filter by"
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "type": "string",
+                        "format": "date",
+                        "description": "End date to filter by"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Page number"
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Number of results per page"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/WeatherData"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/weather/stats": {
+            "get": {
+                "summary": "Get weather statistics",
+                "description": "Fetch weather statistics with optional filters (station ID, year).",
+                "parameters": [
+                    {
+                        "name": "station_id",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Weather station ID to filter by"
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Year to filter by"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Page number"
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Number of results per page"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/WeatherStats"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "WeatherData": {
+            "type": "object",
+            "properties": {
+                "station_id": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "max_temp": {
+                    "type": "number"
+                },
+                "min_temp": {
+                    "type": "number"
+                },
+                "precipitation": {
+                    "type": "number"
+                }
+            }
+        },
+        "WeatherStats": {
+            "type": "object",
+            "properties": {
+                "station_id": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "integer"
+                },
+                "avg_max_temp": {
+                    "type": "number"
+                },
+                "avg_min_temp": {
+                    "type": "number"
+                },
+                "total_precipitation": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

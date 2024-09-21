@@ -1,0 +1,32 @@
+# macOS system files
+.DS_Store
+
+# Python cache directories and files
+__pycache__/
+*.py[cod]
+
+# Log files and temporary files
+*.log
+*.tmp
+
+# Ignore all .txt files, but keep requirements.txt
+*.txt
+!requirements.txt
+
+# Environment and config files
+.env
+*.env
+
+# Byte-compiled and package distribution files
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
